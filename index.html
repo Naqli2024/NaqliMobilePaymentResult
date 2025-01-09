@@ -18,18 +18,15 @@
 
         .container {
             text-align: center;
-            background-color: white;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .loading-spinner {
-            border: 8px solid #f3f3f3;
+            border: 8px solid #BCBCBC;
             border-top: 8px solid #4caf50;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
             margin: 20px auto;
         }
@@ -48,17 +45,15 @@
     <div class="container">
         <h1>Processing...</h1>
         <div class="loading-spinner"></div>
+        <p>Please wait... Loading your payment results.</p>
     </div>
 
     <script>
-        // Show the loading spinner for 5 seconds, then post message to Flutter
         setTimeout(() => {
             console.log("Posting message: NavigateToFlutter");
             window.parent.postMessage("NavigateToFlutter", "*");
-
-            // For in_app_webview package in Flutter
-            if (window.flutter_inappwebview) {
-                window.flutter_inappwebview.callHandler('NavigateToFlutter');
+            if (window.NavigateToFlutter) {
+                window.NavigateToFlutter.postMessage('NavigateToFlutter');
             }
         }, 5000);
     </script>
